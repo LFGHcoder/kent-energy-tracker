@@ -1,0 +1,66 @@
+LANGUAGE: C++
+
+Kent State Campus Walk Energy Tracker
+Student Application Developer Programming Challenge
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int energy = 100;
+
+    // store Fibonacci numbers up to 150
+    int fib[20];
+    fib[0] = 1;
+    fib[1] = 2;
+    int count = 2;
+
+    while (fib[count - 1] <= 150) {
+        fib[count] = fib[count - 1] + fib[count - 2];
+        count++;
+    }
+
+    for (int step = 1; step <= 150; step++) {
+
+        bool isFib = false;
+
+        // check if step is Fibonacci
+        for (int i = 0; i < count; i++) {
+            if (fib[i] == step) {
+                isFib = true;
+                break;
+            }
+        }
+
+        if (isFib) {
+            energy += 10;
+            cout << "Step " << step << ": Energy Boost! Energy = " << energy << endl;
+        }
+
+        else if (step % 3 == 0 && step % 5 == 0) {
+            energy -= 5;
+            cout << "Step " << step << ": Energy = " << energy << endl;
+        }
+
+        else if (step % 3 == 0) {
+            energy -= 2;
+            cout << "Step " << step << ": Energy = " << energy << endl;
+        }
+
+        else if (step % 5 == 0) {
+            energy -= 3;
+            cout << "Step " << step << ": Energy = " << energy << endl;
+        }
+
+        else {
+            cout << "Step " << step << ": Energy = " << energy << endl;
+        }
+
+        if (energy < 50) {
+            cout << "Low Energy! Consider getting coffee." << endl;
+        }
+    }
+
+    return 0;
+}
